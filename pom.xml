@@ -25,6 +25,8 @@
   <artifactId>gson-util</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
+
+
   <name>Gson Utils</name>
   <description>Miscellaneous utility classes for Gson</description>
 
@@ -95,6 +97,20 @@
       <version>0.42</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>ch.qos.logback</groupId>
+    	<artifactId>logback-core</artifactId>
+    	<version>1.2.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.slf4j</groupId>
+    	<artifactId>slf4j-api</artifactId>
+    	<version>1.7.25</version>
+    </dependency>
   </dependencies>
+  <properties>
+  	<maven.compiler.source>10</maven.compiler.source>
+  	<maven.compiler.target>10</maven.compiler.target>
+  </properties>
 </project>
 
