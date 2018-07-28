@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.google.caliper.json;
+package com.nicolaswinocur.json;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;

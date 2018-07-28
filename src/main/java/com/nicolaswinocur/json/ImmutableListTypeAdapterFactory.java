@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2012 Google Inc.
- * Modifications 2018 by Nicolas Winocur
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.google.caliper.json;
+package com.nicolaswinocur.json;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
@@ -28,41 +27,41 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Serializes and deserializes {@link ImmutableMap} instances using a {@link LinkedHashMap} as an
+ * Serializes and deserializes {@link ImmutableList} instances using an {@link ArrayList} as an
  * intermediary.
  */
-final class ImmutableMapTypeAdapterFactory implements TypeAdapterFactory {
+final class ImmutableListTypeAdapterFactory implements TypeAdapterFactory {
 
   @SuppressWarnings("unchecked")
   public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
     Type type = typeToken.getType();
-    if (typeToken.getRawType() != ImmutableMap.class || !(type instanceof ParameterizedType)) {
+    if (typeToken.getRawType() != ImmutableList.class || !(type instanceof ParameterizedType)) {
       return null;
     }
 
-    com.google.common.reflect.TypeToken<ImmutableMap<?, ?>> betterToken =
-        (com.google.common.reflect.TypeToken<ImmutableMap<?, ?>>)
+    com.google.common.reflect.TypeToken<ImmutableList<?>> betterToken =
+        (com.google.common.reflect.TypeToken<ImmutableList<?>>)
             com.google.common.reflect.TypeToken.of(typeToken.getType());
-    final TypeAdapter<LinkedHashMap<?, ?>> linkedHashMapAdapter =
-        (TypeAdapter<LinkedHashMap<?, ?>>)
+    final TypeAdapter<ArrayList<?>> arrayListAdapter =
+        (TypeAdapter<ArrayList<?>>)
             gson.getAdapter(
                 TypeToken.get(
-                    betterToken.getSupertype(Map.class).getSubtype(LinkedHashMap.class).getType()));
+                    betterToken.getSupertype(List.class).getSubtype(ArrayList.class).getType()));
     return new TypeAdapter<T>() {
       @Override
       public void write(JsonWriter out, T value) throws IOException {
-        LinkedHashMap<?, ?> linkedHashMap = Maps.newLinkedHashMap((Map<?, ?>) value);
-        linkedHashMapAdapter.write(out, linkedHashMap);
+        ArrayList<?> arrayList = Lists.newArrayList((List<?>) value);
+        arrayListAdapter.write(out, arrayList);
       }
 
       @Override
       public T read(JsonReader in) throws IOException {
-        LinkedHashMap<?, ?> linkedHashMap = linkedHashMapAdapter.read(in);
-        return (T) ImmutableMap.copyOf(linkedHashMap);
+        ArrayList<?> arrayList = arrayListAdapter.read(in);
+        return (T) ImmutableList.copyOf(arrayList);
       }
     };
   }
