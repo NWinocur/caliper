@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ Copyright 2011 Google Inc.
+  ~ Modifications 2018 by Nicolas Winocur
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -19,30 +20,27 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
-  </parent>
 
-  <groupId>com.google.caliper</groupId>
-  <artifactId>caliper-parent</artifactId>
-  <version>HEAD-SNAPSHOT</version>
+  <groupId>com.nicolaswinocur.gson-utils</groupId>
+  <artifactId>gson-util</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Caliper Maven Parent</name>
-  <description>Maven parent POM for Caliper modules</description>
+  <name>Gson Utils</name>
+  <description>Miscellaneous utility classes for Gson</description>
 
-  <url>https://github.com/google/caliper</url>
+  <url>https://github.com/NWinocur/gson-utils</url>
 
-  <inceptionYear>2009</inceptionYear>
+  <inceptionYear>2018</inceptionYear>
 
   <organization>
-    <name>Google Inc.</name>
-    <url>http://www.google.com</url>
+    <url>http://www.nicolaswinocur.com</url>
   </organization>
 
   <developers>
+    <developer>
+      <name>Nicolas Winocur</name>
+    </developer>
     <developer>
       <name>Gregory Kick</name>
       <organization>Google Inc.</organization>
@@ -65,254 +63,51 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:https://github.com/google/caliper.git</connection>
-    <developerConnection>scm:git:git@github.com:google/caliper.git</developerConnection>
-    <url>https://github.com/google/caliper</url>
+    <connection>scm:git:https://github.com/NWinocur/gson-utils.git</connection>
+    <developerConnection>scm:git:git@github.com:NWinocur/gson-utils.git</developerConnection>
+    <url>https://github.com/NWinocur/gson-utils</url>
   </scm>
 
   <issueManagement>
     <system>GitHub Issues</system>
-    <url>https://github.com/google/caliper/issues</url>
+    <url>https://github.com/NWinocur/gson-utils/issues</url>
   </issueManagement>
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <dagger.version>2.14.1</dagger.version>
-    <autovalue.version>1.5.3</autovalue.version>
-  </properties>
-
-  <modules>
-    <module>caliper</module>
-    <module>caliper-api</module>
-    <module>caliper-core</module>
-    <module>caliper-examples</module>
-    <module>caliper-runner</module>
-    <module>caliper-util</module>
-    <module>caliper-worker</module>
-    <module>caliper-worker-android</module>
-    <module>caliper-worker-jvm</module>
-  </modules>
-
+  
   <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>jsr305</artifactId>
-        <version>1.3.9</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.code.gson</groupId>
-        <artifactId>gson</artifactId>
-        <version>2.2.2</version>
-      </dependency>
-      <dependency>
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time</artifactId>
-        <version>2.1</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.jersey</groupId>
-        <artifactId>jersey-client</artifactId>
-        <version>1.11</version>
-      </dependency>
-      <dependency>
-        <groupId>com.squareup.okhttp</groupId>
-        <artifactId>okhttp</artifactId>
-        <version>2.5.0</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.dagger</groupId>
-        <artifactId>dagger</artifactId>
-        <version>${dagger.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.dagger</groupId>
-        <artifactId>dagger-producers</artifactId>
-        <version>${dagger.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.auto.value</groupId>
-        <artifactId>auto-value</artifactId>
-        <version>${autovalue.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>23.6-jre</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.code.java-allocation-instrumenter</groupId>
-        <artifactId>java-allocation-instrumenter</artifactId>
-        <version>3.1.0</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.10</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.truth</groupId>
-        <artifactId>truth</artifactId>
-        <version>0.39</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-all</artifactId>
-        <version>1.9.5</version>
-      </dependency>
-    </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.dagger</groupId>
+      <artifactId>dagger</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.truth</groupId>
+      <artifactId>truth</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
   </dependencyManagement>
 
-  <build>
-    <defaultGoal>package</defaultGoal>
-
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.5.1</version>
-          <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-            <annotationProcessorPaths>
-               <path>
-                <groupId>com.google.auto.value</groupId>
-                <artifactId>auto-value</artifactId>
-                <version>${autovalue.version}</version>
-              </path>
-              <path>
-                <groupId>com.google.dagger</groupId>
-                <artifactId>dagger-compiler</artifactId>
-                <version>${dagger.version}</version>
-              </path>
-            </annotationProcessorPaths>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>2.5</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-eclipse-plugin</artifactId>
-          <version>2.9</version>
-          <configuration>
-            <downloadSources>true</downloadSources>
-            <downloadJavadocs>true</downloadJavadocs>
-            <workspace>../eclipse-ws/</workspace>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.1</version>
-          <configuration>
-            <arguments>-DenableCiProfile=true</arguments>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>2.4</version>
-          <executions>
-            <execution>
-              <id>attach-sources</id>
-              <goals>
-                <goal>jar-no-fork</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.0</version>
-          <executions>
-            <execution>
-              <id>generate-javadocs</id>
-              <phase>site</phase>
-              <goals>
-                <goal>javadoc</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <links>
-              <link>http://download.oracle.com/javase/1.8.0/docs/api/</link>
-            </links>
-            <version>true</version>
-            <show>public</show>
-            <doclint>none</doclint>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-shade-plugin</artifactId>
-          <version>2.3</version>
-          <executions>
-            <execution>
-              <phase>package</phase>
-              <goals>
-                <goal>shade</goal>
-              </goals>
-              <configuration>
-                <shadedArtifactAttached>true</shadedArtifactAttached>
-                <shadedClassifierName>all</shadedClassifierName>
-                <!-- disable relocation as it is breaking some reflection -->
-                <!-- <relocations>
-                  <relocation>
-                    <pattern>com.google</pattern>
-                    <shadedPattern>com.google.caliper.shaded.com.google</shadedPattern>
-                    <excludes>
-                      <exclude>com.google.caliper.**</exclude>
-                    </excludes>
-                  </relocation>
-                  <relocation>
-                    <pattern>com.sun.jersey</pattern>
-                    <shadedPattern>com.google.caliper.shaded.com.sun.jersey</shadedPattern>
-                  </relocation>
-                  <relocation>
-                    <pattern>com.sun.ws</pattern>
-                    <shadedPattern>com.google.caliper.shaded.com.sun.ws</shadedPattern>
-                  </relocation>
-                  <relocation>
-                    <pattern>javax.inject</pattern>
-                    <shadedPattern>com.google.caliper.shaded.javax.inject</shadedPattern>
-                  </relocation>
-                  <relocation>
-                    <pattern>javax.ws</pattern>
-                    <shadedPattern>com.google.caliper.shaded.javax.ws</shadedPattern>
-                  </relocation>
-                  <relocation>
-                    <pattern>org.aopalliance</pattern>
-                    <shadedPattern>com.google.caliper.shaded.org.aopalliance</shadedPattern>
-                  </relocation>
-                  <relocation>
-                    <pattern>org.joda</pattern>
-                    <shadedPattern>com.google.caliper.shaded.org.joda</shadedPattern>
-                  </relocation>
-                  <relocation>
-                    <pattern>org.objectweb</pattern>
-                    <shadedPattern>com.google.caliper.shaded.org.objectweb</shadedPattern>
-                  </relocation>
-                </relocations> -->
-                <transformers>
-                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                    <manifestEntries>
-                      <Premain-Class>com.google.monitoring.runtime.instrumentation.AllocationInstrumenter</Premain-Class>
-                      <Can-Redefine-Classes>true</Can-Redefine-Classes>
-                      <Can-Retransform-Classes>true</Can-Retransform-Classes>
-                    </manifestEntries>
-                  </transformer>
-                </transformers>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
-
 </project>
+
