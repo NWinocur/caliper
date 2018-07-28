@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2012 Google Inc.
+ * Modifications 2018 by Nicolas Winocur
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,12 +28,12 @@ import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.inject.Inject;
 
 /**
- * Serializes and deserializes {@link ImmutableMap} instances using a {@link HashMap} as an
+ * Serializes and deserializes {@link ImmutableMap} instances using a {@link LinkedHashMap} as an
  * intermediary.
  */
 final class ImmutableMapTypeAdapterFactory implements TypeAdapterFactory {
@@ -51,22 +52,22 @@ final class ImmutableMapTypeAdapterFactory implements TypeAdapterFactory {
     com.google.common.reflect.TypeToken<ImmutableMap<?, ?>> betterToken =
         (com.google.common.reflect.TypeToken<ImmutableMap<?, ?>>)
             com.google.common.reflect.TypeToken.of(typeToken.getType());
-    final TypeAdapter<HashMap<?, ?>> hashMapAdapter =
-        (TypeAdapter<HashMap<?, ?>>)
+    final TypeAdapter<LinkedHashMap<?, ?>> linkedHashMapAdapter =
+        (TypeAdapter<LinkedHashMap<?, ?>>)
             gson.getAdapter(
                 TypeToken.get(
-                    betterToken.getSupertype(Map.class).getSubtype(HashMap.class).getType()));
+                    betterToken.getSupertype(Map.class).getSubtype(LinkedHashMap.class).getType()));
     return new TypeAdapter<T>() {
       @Override
       public void write(JsonWriter out, T value) throws IOException {
-        HashMap<?, ?> hashMap = Maps.newHashMap((Map<?, ?>) value);
-        hashMapAdapter.write(out, hashMap);
+        LinkedHashMap<?, ?> linkedHashMap = Maps.newLinkedHashMap((Map<?, ?>) value);
+        linkedHashMapAdapter.write(out, linkedHashMap);
       }
 
       @Override
       public T read(JsonReader in) throws IOException {
-        HashMap<?, ?> hashMap = hashMapAdapter.read(in);
-        return (T) ImmutableMap.copyOf(hashMap);
+        LinkedHashMap<?, ?> linkedHashMap = linkedHashMapAdapter.read(in);
+        return (T) ImmutableMap.copyOf(linkedHashMap);
       }
     };
   }
