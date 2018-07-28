@@ -42,19 +42,39 @@ public final class GsonUtils {
 
   private static final Logger logger = LoggerFactory.getLogger(GsonUtils.class);
 
+  /**
+   * Intentionally private constructor so people don't try to instantiate what is currently designed
+   * as a non-instantiable utility class
+   */
   private GsonUtils() {}
 
+  /**
+   * Set of all possible TypeAdapterFactory classes this util class will try to register with any
+   * Gson object it creates, works with, or returns. New TypeAdapterFactories should get added to
+   * this set if/whenever they are created.
+   */
   static private final ImmutableSet<TypeAdapterFactory> typeAdapterFactories =
       ImmutableSet.of(new ImmutableListTypeAdapterFactory(), new ImmutableMapTypeAdapterFactory(),
           new NaturallySortedMapTypeAdapterFactory(), new ImmutableMultimapTypeAdapterFactory(),
           new ImmutableSetTypeAdapterFactory());
 
+  /**
+   * @return a Gson object which has already been registered with all TypeAdapterFactories known to
+   *         this class.
+   */
   public static Gson provideGson() {
     GsonBuilder gsonBuilder = new GsonBuilder();
     typeAdapterFactories.forEach(gsonBuilder::registerTypeAdapterFactory);
     return gsonBuilder.create();
   }
 
+  /**
+   * @param out is the output stream to which this class will send serialized data.
+   * @param messages is the collection of Objects to write to that output stream. (Despite the
+   *        parameter being called "messages" as though it's network communications, this method
+   *        should work equally well with FileOutputStream and other output streams).
+   * @throws IOException if unable to write to the stream.
+   */
   public static void writeJsonStream(OutputStream out, Collection<? extends Object> messages)
       throws IOException {
     Preconditions.checkNotNull(out);
@@ -69,6 +89,15 @@ public final class GsonUtils {
     writer.close();
   }
 
+  /**
+   * @param in is the intputStream accepting the data being deserialized
+   * @param type gives the reader a hint as to what data type is being read. It's assumed that all
+   *        data being read from InputStream in is of a specified type which inherits from the
+   *        simple empty interface GsonSerializable.
+   * @return gives an ImmutableList into which the now-deserialized data has been collected.
+   * @throws UnsupportedEncodingException if attempting to use UTF-8 to deserialize the data
+   *         encounters an issue.
+   */
   public static <E extends GsonSerializable> ImmutableCollection<E> readJsonFrom(InputStream in,
       Class<E> type) throws UnsupportedEncodingException {
     Preconditions.checkNotNull(in);
