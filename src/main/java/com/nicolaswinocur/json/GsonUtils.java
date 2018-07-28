@@ -12,7 +12,7 @@
  * the License.
  */
 
-package com.google.caliper.json;
+package com.nicolaswinocur.json;
 
 import java.io.IOException;
 import java.io.InputStream;

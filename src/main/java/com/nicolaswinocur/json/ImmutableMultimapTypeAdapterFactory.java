@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.caliper.json;
+package com.nicolaswinocur.json;
 
 import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableMultimap;

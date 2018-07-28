@@ -1,4 +1,4 @@
-package com.google.caliper.json;
+package com.nicolaswinocur.json;
 
 public interface GsonSerializable {
 
