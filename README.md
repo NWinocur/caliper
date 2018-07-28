@@ -42,7 +42,8 @@ guarantees issue, and adds support for ImmutableSet.  And all the while the
 
 ## Usage
 
-1. Design and implement the class you wish to serialize & later deserialize.
+1. Design and implement the (probably immutable value class) class you wish 
+to serialize & later deserialize.
 1. Have that class implement the dumb interface GsonSerializable to show it
 should be usable in that manner.
 1. Create a collection of objects of that type which you wish to serialize.
