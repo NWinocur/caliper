@@ -24,7 +24,6 @@
   <groupId>com.nicolaswinocur.gson-utils</groupId>
   <artifactId>gson-util</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
 
   <name>Gson Utils</name>
   <description>Miscellaneous utility classes for Gson</description>
@@ -73,41 +72,29 @@
     <url>https://github.com/NWinocur/gson-utils/issues</url>
   </issueManagement>
   
-  <dependencyManagement>
   <dependencies>
-    <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <scope>provided</scope>
-    </dependency>
+  	<dependency>
+  		<groupId>com.google.code.gson</groupId>
+  		<artifactId>gson</artifactId>
+  		<version>2.8.5</version>
+  	</dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.dagger</groupId>
-      <artifactId>dagger</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
+      <version>25.1-jre</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
+      <version>0.42</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
-  </dependencyManagement>
-
 </project>
 

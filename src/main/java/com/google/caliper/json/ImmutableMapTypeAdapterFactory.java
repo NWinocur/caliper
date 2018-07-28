@@ -30,7 +30,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import javax.inject.Inject;
 
 /**
  * Serializes and deserializes {@link ImmutableMap} instances using a {@link LinkedHashMap} as an
@@ -38,11 +37,7 @@ import javax.inject.Inject;
  */
 final class ImmutableMapTypeAdapterFactory implements TypeAdapterFactory {
 
-  @Inject
-  ImmutableMapTypeAdapterFactory() {}
-
   @SuppressWarnings("unchecked")
-  @Override
   public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {
     Type type = typeToken.getType();
     if (typeToken.getRawType() != ImmutableMap.class || !(type instanceof ParameterizedType)) {
