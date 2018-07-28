@@ -39,3 +39,19 @@ So this project starts with Caliper's code as a basis, then strips away some
 of that package's less essential-looking dependencies, resolves the sort order 
 guarantees issue, and adds support for ImmutableSet.  And all the while the 
 "meat" of it is trivially diff-able/comparable with "known-good" Google code.
+
+## Usage
+
+1. Design and implement the class you wish to serialize & later deserialize.
+1. Have that class implement the dumb interface GsonSerializable to show it
+should be usable in that manner.
+1. Create a collection of objects of that type which you wish to serialize.
+1. When you want to write a collection of that object to a stream, call
+GsonUtils.writeJsonStream(), specifying the destination stream and your data.
+1. When you want to read that information back, call 
+GsonUtils.readJsonStream(),  specifying the data type you expect it to be.
+A collection of that read-in data should be returned to you.
+1. If the read-in data ever mismatches the written data, it may be because
+one of the TypeAdapterFactories in the package needs to be corrected or
+created.  For newly-created TypeAdapterFactories, ensure GsonUtils will
+recognize them by adding them to that internally-maintained private Set.
