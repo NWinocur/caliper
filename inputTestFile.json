@@ -1,0 +1,10 @@
+[
+    {
+      "myInt": 1,
+      "myString": "One"
+    },
+    {
+      "myInt": 9001,
+      "myString": "over nine thousand"
+    }
+  ]
